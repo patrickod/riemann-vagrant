@@ -1,0 +1,7 @@
+# Disable the broken default views
+# config[:views] = '/usr/share/riemann-dash/'
+
+# Apparently this once worked. Not anymore
+# config.store[:client][:host] = '<%= scope.lookupvar('riemann::params::riemann_server_ip') %>'
+#
+set :bind, '<%= scope.lookupvar('riemann::params::riemann_server_ip') %>'
