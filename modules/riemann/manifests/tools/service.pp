@@ -7,7 +7,7 @@ class riemann::tools::service($health_enabled=true, $net_enabled=true) {
 
   file { '/etc/init/riemann-health.conf':
     ensure  => present,
-    source  => 'puppet:///modules/riemann/riemann-health.conf',
+    content => template("riemann/riemann-health.conf.erb"),
     notify  => Service['riemann-health'],
   }
 
@@ -31,7 +31,7 @@ class riemann::tools::service($health_enabled=true, $net_enabled=true) {
 
   file { '/etc/init/riemann-net.conf':
     ensure  => present,
-    source  => 'puppet:///modules/riemann/riemann-net.conf',
+    content => template("riemann/riemann-net.conf.erb"),
     notify  => Service['riemann-net'],
   }
 

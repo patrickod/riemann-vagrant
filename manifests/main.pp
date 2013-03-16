@@ -14,4 +14,9 @@ node default {
   class { 'riemann::dash': config_file => '/etc/riemann-dash.rb' }
 
   include riemann::tools
+
+  notify { "finished":
+    withpath => false,
+    name     => "Your Riemann instance is now avialable at $::ipaddress_eth1"
+  }
 }

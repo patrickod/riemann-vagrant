@@ -1,0 +1,5 @@
+description "start and stop riemann-health"
+author "Gareth Rushgrove"
+
+exec /opt/vagrant_ruby/bin/riemann-health --host <%= scope.lookupvar("riemann::params::riemann_server_ip") %>
+
