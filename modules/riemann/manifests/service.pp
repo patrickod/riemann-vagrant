@@ -8,12 +8,11 @@ class riemann::service($config_file) {
     enable     => true,
     hasstatus  => true,
     hasrestart => true,
-    provider   => upstart,
+    provider   => init,
     require    => [
       File['/etc/init.d/riemann'],
       Class['riemann::package'],
     ],
   }
   File['/etc/init.d/riemann'] ~> Service['riemann']
-  # File['/etc/init/riemann.conf'] ~> Service['riemann']
 }

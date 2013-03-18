@@ -20,19 +20,4 @@ class riemann::package($version) {
     creates => "/etc/init.d/riemann",
     path    => ['/sbin', '/usr/sbin', '/bin', '/usr/bin']
   }
-
-  # exec { 'untar_riemann':
-  #   command => "tar xvfj /usr/local/src/riemann-$version.tar.bz2",
-  #   cwd     => '/opt',
-  #   creates => "/opt/riemann-$version",
-  #   path    => ['/bin',],
-  #   before  => File['/opt/riemann'],
-  # }
-
-  # file { '/opt/riemann':
-  #   ensure => link,
-  #   target => "/opt/riemann-$version",
-  #   notify => Service['riemann'],
-  # }
-
 }
