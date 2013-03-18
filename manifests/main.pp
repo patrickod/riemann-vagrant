@@ -7,8 +7,10 @@ node default {
   package { 'build-essential':
     ensure => installed
   }
+}
 
-  class { 'riemann': version => '0.1.5' }
+node 'riemann.patrickod.dev' inherits default {
+  class { 'riemann': version => '0.2.0' }
 
   include riemann::dash::sample
   class { 'riemann::dash': config_file => '/etc/riemann-dash.rb' }
@@ -17,6 +19,7 @@ node default {
 
   notify { "finished":
     withpath => false,
-    name     => "Your Riemann instance is now avialable at $::ipaddress_eth1"
+    name     => "Your Riemann instance is now avialable at $::ipaddress_eth1",
+    require  => Class["riemann", "riemann::tools", "riemann::dash"]
   }
 }

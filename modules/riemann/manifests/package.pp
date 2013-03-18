@@ -9,16 +9,16 @@ class riemann::package($version) {
   }
 
   wget::fetch { 'download_riemann':
-    source      => "http://aphyr.com/riemann/riemann-$version.tar.deb",
-    destination => "/usr/local/src/riemann-$version.tar.deb",
+    source      => "http://aphyr.com/riemann/riemann_${version}_all.deb",
+    destination => "/usr/local/src/riemann_${version}_all.deb",
     before      => Exec['dpkg_install_riemann'],
   }
 
   exec { 'dpkg_install_riemann':
-    command => "dpkg -i /usr/local/src/riemann-$version.deb",
+    command => "dpkg -i /usr/local/src/riemann_${version}_all.deb",
     cwd     => "/opt",
     creates => "/etc/init.d/riemann",
-    path    => ['/bin', '/usr/bin'],
+    path    => ['/sbin', '/usr/sbin', '/bin', '/usr/bin']
   }
 
   # exec { 'untar_riemann':
